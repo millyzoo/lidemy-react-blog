@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+## React Blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+使用 [Create React App](https://github.com/facebook/create-react-app) 開發，並串接 [Lidemy API](https://github.com/Lidemy/lidemy-student-json-api-server) 的 SPA Blog。
 
-## Available Scripts
+☞ [DEMO](https://milyzoo.github.io/lidemy-react-blog/)
 
-In the project directory, you can run:
+![](images/screenshots-main.png)
 
-### `yarn start`
+## 功能
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 開放使用者註冊及登入功能
+- 使用者在登入狀態下可以新增、編輯、刪除文章
+- 檢視所有文章功能，支援分頁功能，一頁顯示 5 篇，文章排序由新至舊排列
+- 點擊文章標題或 Read More 可以檢視文章完整資訊
+- 點擊作者名稱，可以進一步查看作者所發布的文章
+- 提供標題及文章內容關鍵字搜尋
+- 支援深色模式，並將切換後的模式記錄於 localStorage
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 使用技術
 
-### `yarn test`
+- 以 React 開發，搭配 React-router 處理前端路由，實現 Single-page application
+- 使用 function component 並導入 Hooks 來管理組件狀態
+- 支援 RWD，使用 styled-components 進行排版
+- 搭配 Prettier、ESLint 統一程式碼格式
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 功能說明
 
-### `yarn build`
+### 會員機制
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+由於此系統的密碼以明文儲存，所以會在後端統一將密碼設置成 Lidemy，因此每個使用者的密碼將會相同。
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](images/screenshots-login.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 作者文章列表
 
-### `yarn eject`
+點擊文章上的作者名稱，即可瀏覽該作者的文章列表。
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![](images/screenshots-author.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 搜尋功能
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+於上方搜尋欄位輸入關鍵字，即會列出其標題或文章內容有符合關鍵字的文章。
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](images/screenshots-search.png)
 
-## Learn More
+### Responsive Web Design
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+支援不同的裝置瀏覽。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![](images/screenshots-mobile.gif)
 
-### Code Splitting
+## Installation & 本機端啟動
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+如果要在本機端啟動專案，需先安裝 Node.js 再進行以下步驟。
 
-### Analyzing the Bundle Size
+### 下載專案
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+首先將專案下載至本機端。
 
-### Making a Progressive Web App
+```
+$ git clone https://github.com/milyzoo/lidemy-react-blog.git
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 安裝套件
 
-### Advanced Configuration
+```
+$ npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 啟動專案
 
-### Deployment
+啟動後，可於任一瀏覽器以 http://localhost:3000 進行結果預覽。
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+$ yarn start
+```
