@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MEDIA_QUERY_SM } from "../../constants/breakpoint";
-import { Wrapper, Container } from "../../layout/mainLayout";
+import { Wrapper, Container, EmptyDataTitle } from "../../layout/mainLayout";
 import { AiOutlineUser as PersonIcon } from "react-icons/ai";
 import { getAuthorArticles } from "../../WebAPI";
 import Article from "../../components/Article/Article";
@@ -37,27 +37,41 @@ const Author = styled.span`
 export default function ArticlePage() {
   const [articles, setArticles] = useState([]);
   const [authorNickname, setAuthorNickname] = useState();
+  const [hasAuthor, setHasAuthor] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   let { userId } = useParams();
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    getAuthorArticles(userId).then((data) => {
+  async function getArticles(userId) {
+    try {
+      const data = await getAuthorArticles(userId);
       setArticles(data);
       setAuthorNickname(data[0].user.nickname);
+      setHasAuthor(true);
       setIsLoading(false);
-    });
+    } catch (error) {
+      console.log("錯誤：" + error);
+      setHasAuthor(false);
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    getArticles(userId);
   }, [userId]);
 
   return (
     <Wrapper>
       <Container>
         {isLoading && <Loading />}
-        <Title>
-          <PersonIcon />
-          <Author>{authorNickname}</Author>發表的所有文章
-        </Title>
+        {hasAuthor ? (
+          <Title>
+            <PersonIcon />
+            <Author>{authorNickname}</Author>發表的所有文章
+          </Title>
+        ) : (
+          <EmptyDataTitle>找不到作者。</EmptyDataTitle>
+        )}
         {articles.map((article) => (
           <Article key={article.id} article={article} />
         ))}

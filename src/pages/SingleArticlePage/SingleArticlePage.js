@@ -125,13 +125,21 @@ export default function SingleArticlePage() {
   const history = useHistory();
   const isEmptyArticle = Object.keys(article).length === 0;
 
-  useEffect(() => {
-    setIsLoading(true);
-    getSingleArticle(id).then((article) => {
+  async function getArticle(id) {
+    try {
+      const article = await getSingleArticle(id);
       setArticle(article);
       setArticleAuthor(article.user.username);
       setIsLoading(false);
-    });
+    } catch (error) {
+      console.log("錯誤：" + error);
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    getArticle(id);
   }, [id]);
 
   const handleArticleDelete = () => {

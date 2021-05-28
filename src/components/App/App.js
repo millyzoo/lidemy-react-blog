@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import useDarkMode from "../useDarkMode";
+import useDarkMode from "../../hooks/useDarkMode";
 import GlobalStyle from "../../layout/globalStyle";
 import themes from "../Themes";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import LoginPage from "../../pages/LoginPage";
-import RegisterPage from "../../pages/RegisterPage";
-import HomePage from "../../pages/HomePage";
-import ArticlesPage from "../../pages/ArticlesPage";
-import SingleArticlePage from "../../pages/SingleArticlePage";
-import AuthorPage from "../../pages/AuthorPage";
-import AddArticlePage from "../../pages/AddArticlePage";
-import EditArticlePage from "../../pages/EditArticlePage";
-import SearchPage from "../../pages/SearchPage";
+import {
+  LoginPage,
+  RegisterPage,
+  HomePage,
+  ArticlesPage,
+  SingleArticlePage,
+  AuthorPage,
+  AddArticlePage,
+  EditArticlePage,
+  SearchPage,
+} from "../../pages";
 import Header from "../Header";
 import Footer from "../Footer";
 import { AuthContext, SearchContext, ThemeToggleContext } from "../../contexts";

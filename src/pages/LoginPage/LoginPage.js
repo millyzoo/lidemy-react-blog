@@ -190,7 +190,7 @@ export default function LoginPage() {
               onChange={handleInputChange}
             />
             <ShowPasswordIcon onClick={handlePasswordShow}>
-              {isPasswordShow ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              {isPasswordShow ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </ShowPasswordIcon>
           </InputContainer>
           <RegisterLink to="/register">還沒有帳號嗎？按此註冊</RegisterLink>

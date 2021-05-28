@@ -155,7 +155,7 @@ const NavItem = styled(Link)`
     width: 0;
     height: 2px;
     background: rgba(255, 255, 255, 0.7);
-    transition: 0.3s;
+    transition: 0.5s;
   }
 
   &:hover::after {

@@ -44,19 +44,24 @@ export default function ArticlePage() {
   const [totalPage, setTotalPage] = useState();
   const articlesLimit = 5; // 一頁幾篇文章
 
+  async function getAllArticles(currentPage, articlesLimit) {
+    try {
+      const response = await getArticles(currentPage, articlesLimit);
+      const articlesQuantity = response.headers.get("x-total-count"); // 從 api response headers 取得文章總數
+      const articles = await response.json();
+  
+      setTotalPage(Math.ceil(articlesQuantity / articlesLimit)); // (文章總數 / 一頁顯示幾篇) 再用 Math.ceil() 無條件進位 = 總頁數
+      setArticles(articles);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("錯誤：" + error);
+      setIsLoading(false);
+    }
+  }
+
   useEffect(() => {
     setIsLoading(true);
-
-    getArticles(currentPage, articlesLimit)
-      .then((res) => {
-        const articlesQuantity = res.headers.get("x-total-count"); // 從 api response headers 取得文章總數
-        setTotalPage(Math.ceil(articlesQuantity / articlesLimit)); // (文章總數 / 一頁顯示幾篇) 再用 Math.ceil() 無條件進位 = 總頁數
-        return res.json();
-      })
-      .then((articles) => {
-        setArticles(articles);
-        setIsLoading(false);
-      });
+    getAllArticles(currentPage, articlesLimit);
   }, [currentPage]);
 
   const handlePreviousPage = () => {

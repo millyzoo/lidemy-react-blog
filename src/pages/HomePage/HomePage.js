@@ -84,7 +84,6 @@ const DescriptionButton = styled(Link)`
   background-color: #0051c3;
   text-decoration: none;
   color: #fff;
-  box-shadow: 0 0 20px rgba(0, 81, 195, 0.4);
   z-index: 0;
 
   svg {
@@ -137,15 +136,22 @@ export default function HomePage() {
   const pageNumber = 1;
   const articlesLimit = 3;
 
+  async function getAllArticles(pageNumber, articlesLimit) {
+    try {
+      const response = await getArticles(pageNumber, articlesLimit)
+      const data = await response.json()      
+      setArticles(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("錯誤：" + error);
+      setIsLoading(false);
+    }
+  }
+  
   useEffect(() => {
     setIsLoading(true);
 
-    getArticles(pageNumber, articlesLimit)
-      .then((res) => res.json())
-      .then((data) => {
-        setArticles(data);
-        setIsLoading(false);
-      });
+    getAllArticles(pageNumber, articlesLimit)
   }, []);
 
   return (

@@ -37,6 +37,7 @@ export default function SearchPage() {
   let { keyword } = useParams();
 
   useEffect(() => {
+    setIsLoading(true);
     setSearchData(keyword);
     getArticles()
       .then((res) => res.json())

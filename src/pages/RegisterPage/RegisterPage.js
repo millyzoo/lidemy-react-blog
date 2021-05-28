@@ -186,7 +186,7 @@ export default function RegisterPage() {
               onChange={handleInputChange}
             />
             <ShowPasswordIcon onClick={handlePasswordShow}>
-              {isPasswordShow ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              {isPasswordShow ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </ShowPasswordIcon>
           </InputContainer>
           <RemindMessage>為了進行測試，密碼設定皆為默認值</RemindMessage>
